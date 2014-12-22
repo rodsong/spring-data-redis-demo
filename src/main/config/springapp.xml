@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util     
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	<!-- Activates various annotations to be detected in bean classes -->
+	<context:annotation-config />
+
+	<!-- Scans the classpath for annotated components that will be auto-registered as Spring beans.
+ 			 For example @Controller and @Service. Make sure to set the correct base-package-->
+	<context:component-scan base-package="co.javatoday.springdata.redis.service" />
+
+	<util:properties id="appConfig" location="classpath:redis.properties"/>
+	<context:property-placeholder properties-ref="appConfig"/>
+
+	<!-- MongoDB -->
+	<import resource="redis.xml" />
+
+</beans>
